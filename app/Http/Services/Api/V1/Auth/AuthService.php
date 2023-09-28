@@ -87,4 +87,18 @@ class AuthService
 
     return $this->successfullRequest($response, $message, 200);
   }
+
+  public function logout(): object
+  {
+    $token = Auth::user()->tokens()->latest()->first();
+
+    // Check if a token exists (middleware should checked this, but double check it)
+    if (!$token) {
+      return $this->failedRequest('', 'Unauthorized', 401);
+    } else {
+      // Delete token
+      $token->delete();
+      return $this->successfullRequest('', 'User successfully logged out', 200);
+    }
+  }
 }
