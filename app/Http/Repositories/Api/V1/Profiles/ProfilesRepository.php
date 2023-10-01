@@ -11,7 +11,7 @@ class ProfilesRepository
     return Profile::where('user_id', $userId)->update($request);
   }
 
-  public function index(int $userId)
+  public function index(int $userId): object
   {
     return Profile::where('user_id', $userId)->first();
   }
