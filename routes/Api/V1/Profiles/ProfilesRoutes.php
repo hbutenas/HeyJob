@@ -13,5 +13,5 @@ Route::group([
 ], function () {
   Route::patch('', [ProfilesController::class, 'update']);
   Route::get('', [ProfilesController::class, 'index']);
-  Route::get('{id}', [ProfilesController::class, 'show']);
+  Route::get('{id?}', [ProfilesController::class, 'show']);
 });
