@@ -12,4 +12,6 @@ Route::group([
   ]
 ], function () {
   Route::patch('', [CompaniesController::class, 'update']);
+  Route::get('', [CompaniesController::class, 'index']);
+  Route::get('{id}', [CompaniesController::class, 'show']);
 });
