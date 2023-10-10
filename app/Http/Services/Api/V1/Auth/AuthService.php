@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Api\V1\Auth;
 
+use App\Events\Api\V1\Auth\CompanyProfileCreated;
+use App\Events\Api\V1\Auth\UserProfileCreated;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,7 +57,7 @@ class AuthService
 
     if ($user->type === 'job_seeker' && !$user->profile) {
       // If it's a job seeker and their profile doesn't exists, create one
-      $user->createEmptyProfileOnFirstLogin();
+      event(new UserProfileCreated($user));
 
       // Prepare the response and message for job seekers
       $response = [
@@ -66,7 +68,8 @@ class AuthService
       $message = 'User profile is empty and is not created';
     } elseif ($user->type === 'employer' && !$user->company) {
       // If it's a employer and their company doesn't exists, create one
-      $user->createEmptyCompanyOnFirstLogin();
+      // $user->createEmptyCompanyOnFirstLogin();
+      event(new CompanyProfileCreated($user));
 
       // Prepare the response and message for employer
       $response = [
