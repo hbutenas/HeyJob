@@ -68,7 +68,6 @@ class AuthService
       $message = 'User profile is empty and is not created';
     } elseif ($user->type === 'employer' && !$user->company) {
       // If it's a employer and their company doesn't exists, create one
-      // $user->createEmptyCompanyOnFirstLogin();
       event(new CompanyProfileCreated($user));
 
       // Prepare the response and message for employer
