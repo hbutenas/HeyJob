@@ -53,15 +53,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
-
-    // creates empty profile on user first login
-    public function createEmptyProfileOnFirstLogin()
-    {
-        return $this->profile()->create([]);
-    }
-
-    public function createEmptyCompanyOnFirstLogin()
-    {
-        return $this->company()->create([]);
-    }
 }
