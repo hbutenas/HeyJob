@@ -95,16 +95,13 @@ class AuthService
 
     public function logout(): object
     {
-        $token = Auth::user()->tokens()->latest()->first();
+        // Delete session and xsrf token 
+        Auth::guard('web')->logout();
 
-        // Check if a token exists (middleware should check this, but double check it)
-        if (!$token) {
-            return $this->failedRequest('', 'Unauthorized', 401);
-        } else {
-            // Delete token
-            $token->delete();
-            return $this->successfullRequest('', 'User successfully logged out', 200);
-        }
+        // Delete token if one exists
+        Auth::user()->tokens()->latest()->first()->delete();
+
+        return $this->successfullRequest('', 'User successfully logged out', 200);
     }
 
     public function user(): object
