@@ -3,28 +3,28 @@
     <div class="p-8 rounded-2xl shadow-blue-200 shadow-2xl">
       <div class="flex justify-center space-x-8 mb-6">
         <button @click.prevent="displayAuthComponent('login')"
-                :class="displayLoginComponent ? 'text-accent' : 'text-primary'"
-                class="text-sm font-semibold tracking-widest">
+          :class="displayLoginComponent ? 'text-accent' : 'text-primary'" class="text-sm font-semibold tracking-widest">
           Log in
         </button>
         <span class="text-primary">|</span>
         <button @click.prevent="displayAuthComponent('register')"
-                :class="displayRegisterComponent ? 'text-accent' : 'text-primary'"
-                class="text-sm font-semibold tracking-widest">
+          :class="displayRegisterComponent ? 'text-accent' : 'text-primary'"
+          class="text-sm font-semibold tracking-widest">
           Register
         </button>
       </div>
-      <LoginComponent v-if="displayLoginComponent"/>
-      <RegisterComponent v-if="displayRegisterComponent"/>
+      <LoginComponent v-if="displayLoginComponent" />
+      <RegisterComponent v-if="displayRegisterComponent" />
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 
 const displayLoginComponent = ref(true);
 const displayRegisterComponent = ref(false);
+
 const displayAuthComponent = (component) => {
   const isLogin = component === 'login';
   displayLoginComponent.value = isLogin;
