@@ -12,23 +12,19 @@
         <NuxtLink
           class="p-3 text-primary no-underline tracking-wider text-sm transition duration-300 ease-in-out hover:text-secondary"
           to="pricing">
-          Pricing
+          Applicants
         </NuxtLink>
 
         <NuxtLink
           class="p-3 text-primary no-underline tracking-wider text-sm transition duration-300 ease-in-out hover:text-secondary"
           to="about">
-          About
+          Subscriptions
         </NuxtLink>
 
-        <NuxtLink
-          class="p-3 text-primary no-underline tracking-wider text-sm transition duration-300 ease-in-out hover:text-secondary"
-          to="dashboard">
-          About
-        </NuxtLink>
       </nav>
     </div>
-    <!--  -->
+
+    <!-- Bubble navigation right side  -->
     <div class="flex justify-end">
 
       <!-- User Circle with Email using Tailwind CSS -->
@@ -47,7 +43,8 @@
         </div>
         <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
           <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+            <NuxtLink to="/dashboard/profile"
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</NuxtLink>
           </li>
           <li>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Jobs</a>
@@ -93,7 +90,6 @@ const handleLogoutButton = async () => {
   // Log out user
   await auth.logout();
 
-  
   // Redirect to / page
   return navigateTo("/");
 
